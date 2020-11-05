@@ -159,3 +159,48 @@ function mSort( array) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+// const bsort = (arr) => {
+//   let zeroes = 0;
+//   let ones = 0;
+
+//   for (let i = 0; i < arr.length; i++) {
+//     arr//?
+//     zeroes//?
+//     ones//?
+//     if (arr.length - 1 - i <= i) {
+//       if (zeroes) {
+//         arr[arr.length - 1 - i] = 0;
+//         zeroes--;
+//       }
+
+//       if (ones) {
+//         arr[i] = 1;
+//         ones--;
+//       }
+//     } else {
+//       if (arr[arr.length - 1 - i] === 0) {
+//         arr[arr.length - 1 - i] = 1;
+//         zeroes++;
+//       }
+
+//       if (arr[i] === 1) {
+//         arr[i] = 0;
+//         ones++;
+//       }
+//     }
+//   }
+
+//   return arr;
+// };
+
