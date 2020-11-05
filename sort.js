@@ -52,22 +52,16 @@ function merge(left, right, array) {
 
 
 //2 Quick sort
-let count = 0;
-function quickSort(array, start = 0, end = array.length) {
-    if (start >= end) {
-        return array;
-    }
-
-    const middle = partition(array, start, end);
-    array = quickSort(array, start, middle);
-    array = quickSort(array, middle + 1, end);
-    return array;
+function swap(array, i, j) {
+    const tmp = array[i];
+    array[i] = array[j];
+    array[j] = tmp;
 };
 
 function partition(array, start, end) {
     let tempItem = array.shift();
-    array.push(tmpItem);
-    console.log(array);
+    array.push(tempItem);
+    console.log('--------- ALTERED: ',array);
     const pivot = array[end - 1];
     let j = start;
     for (let i = start; i < end - 1; i++) {
@@ -77,19 +71,23 @@ function partition(array, start, end) {
         }
     }
     swap(array, end-1, j);
-    count++;
-    console.log('COUNT: --- ', count, 'ARRAY: -------', array)
     return j;
 };
-
-function swap(array, i, j) {
-    const tmp = array[i];
-    array[i] = array[j];
-    array[j] = tmp;
+let count = 0;
+function quickSort(array, start = 0, end = array.length) {
+    if (start >= end) {
+        return array;
+    }
+    count++;
+    const middle = partition(array, start, end);
+    console.log('COUNT: ', count, '--------- ARRAY: ', array);
+    array = quickSort(array, start, middle);
+    array = quickSort(array, middle + 1, end);
+    return array;
 };
 
-let myArr1 =[14, 17, 13, 15, 19, 10, 3, 16, 9, 12]
-console.log(quickSort(myArr1));
+let myArr = [14, 17, 13, 15, 19, 10, 3, 16, 9, 12]
+console.log(quickSort(myArr));
 
 //2.1 the pivot could have been either 14 or 17
   //Pivot 12: [3, 9, 10, 12, 19, 14, 17, 16, 13, 15]
