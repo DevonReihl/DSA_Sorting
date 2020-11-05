@@ -52,16 +52,17 @@ function merge(left, right, array) {
 
 
 //2 Quick sort
+
+
 function swap(array, i, j) {
     const tmp = array[i];
     array[i] = array[j];
     array[j] = tmp;
 };
 
+
 function partition(array, start, end) {
-    let tempItem = array.shift();
-    array.push(tempItem);
-    console.log('--------- ALTERED: ',array);
+    //partition provided:
     const pivot = array[end - 1];
     let j = start;
     for (let i = start; i < end - 1; i++) {
@@ -73,30 +74,32 @@ function partition(array, start, end) {
     swap(array, end-1, j);
     return j;
 };
-let count = 0;
+
 function quickSort(array, start = 0, end = array.length) {
     if (start >= end) {
         return array;
     }
     count++;
+    //When using the first item on the list as a pivot:
+    let tempItem = array.shift();
+    array.push(tempItem);
+    console.log('--------- ALTERED: ',array);
+
     const middle = partition(array, start, end);
-    console.log('COUNT: ', count, '--------- ARRAY: ', array);
+    // console.log('COUNT: ', count, '--------- ARRAY: ', array);
     array = quickSort(array, start, middle);
     array = quickSort(array, middle + 1, end);
     return array;
 };
 
 let myArr = [14, 17, 13, 15, 19, 10, 3, 16, 9, 12]
-console.log(quickSort(myArr));
+// console.log(quickSort(myArr));
 
-//2.1 the pivot could have been either 14 or 17
+//2.2.1 the pivot could have been either 14 or 17
   //Pivot 12: [3, 9, 10, 12, 19, 14, 17, 16, 13, 15]
 
-//2.2
-
-
-
-//Pivot 14: [14, 13, 10]
+//2.2.2
+  //Pivot 14: [10, 3, 9, 12, 13, 14, 16, 19, 17, 15]
 
 
 //3 Implementing quicksort
@@ -116,8 +119,7 @@ let myArr2 =[89, 30, 25, 32, 72, 70, 51, 42, 25, 24, 53, 55, 78, 50, 13, 40, 48,
             28, 65, 38, 67, 16, 85, 63, 23, 69, 64, 91, 9, 70, 81, 27, 97, 82, 6, 88, 3, 7, 
             46, 13, 11, 64, 76, 31, 26, 38, 28, 13, 17, 69, 90, 1, 6, 7, 64, 43, 9, 73, 80, 
             98, 46, 27, 22, 87, 49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5]
-// console.log(quickS(myArr2));
-
+// console.log(qSort(myArr2));
 
 
 //4 Implementing merge sort
@@ -134,7 +136,7 @@ function mSort( array) {
   right = mSort(right)
   return merge(left, right, array)
 }
-
+// console.log(mSort(myArr2))
 
 
 //5 Sort Linked list using merge
