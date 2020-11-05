@@ -1,0 +1,4 @@
+_Node {
+  value: 1,
+  next: _Node { value: 4, next: _Node { value: 9, next: [_Node] } }
+}

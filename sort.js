@@ -140,9 +140,153 @@ function mSort( array) {
 
 
 //5 Sort Linked list using merge
+class _Node {
+  constructor(value, next) {
+    this.value = value,
+    this.next = next
+  }
+}
+class LinkedList {
+  constructor() {
+    this.head = null;
+  }
 
+  insertFirst(item) {
+    this.head = new _Node( item, this.head)
+  }
 
+  insertLast(item) {
+    if ( this.head === null) {
+      this.insertFirst(item);
+    }
+    else {
+      let tempNode = this.head;
+      while (tempNode.next !== null) {
+        tempNode = tempNode.next;
+      }
+      tempNode.next = new _Node(item, null);
+    }
+  }
 
+  find (item) {
+    let currNode = this.head;
+    if(!this.head) {
+      return null;
+    }
+
+    while (currNode.value !== item) {
+      if (currNode.next === null) {
+        return null;
+      }
+      else {
+        currNode = currNode.next;
+      }
+    }
+  }
+
+  insertBefore(value, key) {
+    if (this.head === null) {
+      this.insertFirst(value)
+    }
+    else {
+      let prevNode =This.head;
+      let NewNode = this.head;
+      while (NewNode.value !== key) {
+        prevNode = newNode;
+        newNode = newNode.next;
+      }
+      prevNode.next = new _Node(value, newNode);
+      this.size++;
+    }
+  }
+}
+
+let sortList = function(head) {
+  
+  if (!head || !head.next) {
+      return head;
+  }
+  
+  let prev = null;
+  let slow = head;
+  let fast = head;
+  while (fast && fast.next) {
+      fast = fast.next.next;
+      prev = slow;
+      slow = slow.next;
+      
+  }
+
+  // close first half list
+  prev.next = null;
+  
+  const l1 = sortList(head);
+  const l2 = sortList(slow);
+  return merge(l1, l2);
+};
+
+function merge(l1, l2) {
+  const head = new _Node();
+  let current = head;
+ 
+  while (l1 && l2) {
+      if (l1.value <= l2.value) {
+          // console.log('IF-----', 'l1', l1, 'l2', l2)
+          current.next = l1;
+          l1 = l1.next;
+      } else {
+          // console.log('ELSE-----', 'l1', l1, 'l2', l2)
+          current.next = l2;
+          l2 = l2.next;
+          
+      }
+      
+      current = current.next;
+  }
+    if(l1 === null) {current.next = l2};
+    if(l2 === null) {current.next = l1};
+  
+  return head.next;
+}
+
+function display(list) {
+  let curr = list.head;
+  let str = '';
+
+  while (curr) {
+    str += curr.value + ", ";
+    curr = curr.next;
+  }
+  return str
+}
+
+function main() {
+  const SLL = new LinkedList();
+  const SLL3 = new LinkedList();
+  const SLL2 = new LinkedList();
+  
+  SLL.insertFirst(4);
+  SLL.insertFirst(1);
+  SLL.insertFirst(56);
+  SLL.insertFirst(9);
+  SLL.insertFirst(20);
+  SLL.insertFirst(143);
+  SLL.insertFirst(65);
+  SLL.insertFirst(90);
+
+  SLL2.insertFirst(35);
+  SLL2.insertFirst(25);
+  SLL2.insertFirst(15);
+  SLL2.insertFirst(5);
+  
+  SLL3.insertFirst(50);
+  SLL3.insertFirst(40);
+  SLL3.insertFirst(30);
+
+  console.log(sortList(SLL.head))
+}
+
+main()
 
 //6 Bucket sort
 
@@ -203,4 +347,3 @@ function mSort( array) {
 
 //   return arr;
 // };
-
