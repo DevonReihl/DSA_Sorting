@@ -53,7 +53,7 @@ function merge(left, right, array) {
 
 //2 Quick sort
 let count = 0;
-function quickS(array, start = 0, end = array.length) {
+function quickSort(array, start = 0, end = array.length) {
     if (start >= end) {
         return array;
     }
@@ -102,35 +102,15 @@ console.log(quickSort(myArr1));
 
 
 //3 Implementing quicksort
-function quickSort(array, start = 0, end = array.length) {
+function qSort(array, start = 0, end = array.length) {
   if (start >= end) {
       return array;
   }
 
   const middle = partition(array, start, end);
-  array = quickSort(array, start, middle);
-  array = quickSort(array, middle + 1, end);
+  array = qSort(array, start, middle);
+  array = qSort(array, middle + 1, end);
   return array;
-};
-
-function partition(array, start, end) {
-  const pivot = array[end - 1];
-  let j = start;
-  for (let i = start; i < end - 1; i++) {
-      if (array[i] <= pivot) {
-          swap(array, i, j);
-          j++;
-      }
-  }
-  swap(array, end-1, j);
-  console.log('COUNT: --- ', count, 'ARRAY: -------', array)
-  return j;
-};
-
-function swap(array, i, j) {
-  const tmp = array[i];
-  array[i] = array[j];
-  array[j] = tmp;
 };
 
 let myArr2 =[89, 30, 25, 32, 72, 70, 51, 42, 25, 24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 
@@ -143,7 +123,19 @@ let myArr2 =[89, 30, 25, 32, 72, 70, 51, 42, 25, 24, 53, 55, 78, 50, 13, 40, 48,
 
 
 //4 Implementing merge sort
+function mSort( array) {
+  if (array.length <= 1) {
+    return array;
+  }
 
+  const middle = Math.floor(array.length / 2)
+  let left = array.slice(0, middle)
+  let right = array.slice( middle, array.length)
+
+  left = mSort(left)
+  right = mSort(right)
+  return merge(left, right, array)
+}
 
 
 
