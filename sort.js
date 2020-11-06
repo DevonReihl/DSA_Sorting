@@ -292,6 +292,29 @@ function bucketSort(arr, max, min) {
   a
 }
 
+//6 - Ady
+let arr6 = [3, 32, 8, 5, 16]; 
+
+// arr.splice(), shift() or unshift()
+
+function sortArr(array, buckets, min, max){
+    let bucketList = [];
+    for (let i = 0; i < buckets; i++){
+        bucketList.push([]);
+    }
+    for (let i = 0; i < array.length; i++){
+        let range = Math.ceil((max - min) / buckets);
+        let idx = Math.floor(array[i] / range);
+        bucketList[idx].push(array[i]);
+    }
+     
+
+}
+console.log(sortArr(arr6, 3, 3, 32));
+// buckets = 3
+// lowest: 3
+// highest: 32
+
 
 
 
